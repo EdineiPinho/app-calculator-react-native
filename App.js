@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react'
 import Botao from './Botao';
 
@@ -22,19 +22,19 @@ export default function App() {
           {stringCalculo}
         </Text>
       </View>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <TouchableHighlight style={styles.ContainertextSigns}>
+      <View style={styles.SignsContainer}>
+        <TouchableOpacity style={styles.ContainertextSigns}>
           <Text style={styles.textSigns}>+</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.ContainertextSigns}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.ContainertextSigns}>
           <Text style={styles.textSigns}>-</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.ContainertextSigns}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.ContainertextSigns}>
           <Text style={styles.textSigns}>x</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.ContainertextSigns}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.ContainertextSigns}>
           <Text style={styles.textSigns}>/</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       <View>
         {
@@ -45,30 +45,31 @@ export default function App() {
           })
         }
       </View>
-      <StatusBar style="auto" />
+      <StatusBar style="hidden" />
     </View>
-
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100vw',
-    display: 'flex',
+    backgroundColor: 'green',
   },
   topo: {
-    display: 'flex',
-    flexDirection: 'row',
     padding: 10,
     borderBottom: 'black',
     borderBottomWidth: 2,
     width: '100%',
   },
+  SignsContainer: {
+    flexDirection: 'row',
+  },
   ContainertextSigns: {
-    width: '25%',
+    width: '20%',
   },
   textSigns: {
     fontSize: '2rem',
     textAlign: 'center',
   },
 });
+
+
