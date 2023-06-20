@@ -6,7 +6,7 @@ const Botao = ({ numero, logicaCalculadora, ...props }) => {
     <View style={styles.btnView}>
       <TouchableOpacity
         style={styles.btnOpacity}
-        onPress={logicaCalculadora}>
+        onPress={() => logicaCalculadora(numero)}>
         <Text style={styles.btnText}>
           {numero}
         </Text>
@@ -22,15 +22,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: '33.3333%',
     height: '25%',
-    alignContent: 'center',
-    justifyContent: 'center',
   },
   btnOpacity: {
     height: '100%',
-    alignContent: 'center',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
   },
   btnText: {
     color: 'white',

@@ -5,8 +5,8 @@ import Botao from './Botao';
 
 export default function App() {
   console.disableYellowBox = true;
-  const [firstNumber, setFirstNumber] = React.useState()
-  const [secondNumber, setSecondNumber] = React.useState()
+  const [firstNumber, setFirstNumber] = React.useState('')
+  const [secondNumber, setSecondNumber] = React.useState(0)
   const [sinal, setSinal] = React.useState('')
   const [stringCalculo, setStringCalculo] = React.useState('0')
 
@@ -15,8 +15,19 @@ export default function App() {
     numeros.push(i)
   }
 
-  function logicaCalculadora() {
-    alert('teste')
+  function logicaCalculadora(n) {
+    if (sinal == '') {
+      setFirstNumber(parseInt(firstNumber.toString() + n.toString()))
+      setStringCalculo(parseInt(parseInt(firstNumber.toString() + n.toString())))
+    }
+    if ((n === '/' || n === 'x' || n === '-' || n === '+') && secondNumber === 0) {
+      setStringCalculo(firstNumber.toString() + n)
+      setSinal(n)
+    }
+    if (sinal != '') {
+      setSecondNumber(parseInt(secondNumber.toString() + n.toString()))
+      setStringCalculo(firstNumber + sinal + parseInt(secondNumber.toString() + n.toString()))
+    }
   }
 
   return (
@@ -28,16 +39,24 @@ export default function App() {
         </Text>
       </View>
       <View style={styles.SignsContainer}>
-        <TouchableOpacity style={styles.ContainertextSigns}>
+        <TouchableOpacity
+          onPress={() => logicaCalculadora('+')}
+          style={styles.ContainertextSigns}>
           <Text style={styles.textSigns}>+</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.ContainertextSigns}>
+        <TouchableOpacity
+          onPress={() => logicaCalculadora('-')}
+          style={styles.ContainertextSigns}>
           <Text style={styles.textSigns}>-</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.ContainertextSigns}>
-          <Text style={styles.textSigns}>x</Text>
+        <TouchableOpacity
+          onPress={() => logicaCalculadora('*')}
+          style={styles.ContainertextSigns}>
+          <Text style={styles.textSigns}>*</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.ContainertextSigns}>
+        <TouchableOpacity
+          onPress={() => logicaCalculadora('/')}
+          style={styles.ContainertextSigns}>
           <Text style={styles.textSigns}>/</Text>
         </TouchableOpacity>
       </View>
@@ -56,6 +75,11 @@ export default function App() {
           })
         }
       </View>
+      <View style={styles.equalView}>
+        <TouchableOpacity onPress={() => logicaCalculadora('=')} style={styles.equalTouch}>
+          <Text style={styles.equalsText}> = </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -67,6 +91,9 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: 'black',
     width: '100%',
+    borderColor: 'white',
+    borderWidth: 1,
+    position: 'relative',
   },
   topo: {
     flex: 1,
@@ -110,6 +137,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     flexWrap: 'wrap',
     height: '64%',
+  },
+  equalView: {
+    position: 'absolute',
+    zIndex: 9999,
+    right: 0,
+    bottom: 0,
+    width: '66.666%',
+    height: '16%',
+    backgroundColor: 'black',
+    borderColor: 'white',
+    borderWidth: 1,
+  },
+  equalTouch: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  equalsText: {
+    alignSelf: 'center',
+    color: 'white',
+    fontSize: 36,
+    textAlign: 'center',
   }
 });
 
