@@ -1,12 +1,16 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-const Botao = ({ numero, ...props }) => {
+const Botao = ({ numero, logicaCalculadora, ...props }) => {
   return (
     <View style={styles.btnView}>
-      <Text style={styles.btnText}>
-        {numero}
-      </Text>
+      <TouchableOpacity
+        style={styles.btnOpacity}
+        onPress={logicaCalculadora}>
+        <Text style={styles.btnText}>
+          {numero}
+        </Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -17,11 +21,21 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 1,
     width: '33.3333%',
+    height: '25%',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  btnOpacity: {
+    height: '100%',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   btnText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: 36,
   }
 })
 

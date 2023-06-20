@@ -15,9 +15,13 @@ export default function App() {
     numeros.push(i)
   }
 
+  function logicaCalculadora() {
+    alert('teste')
+  }
+
   return (
     <View style={styles.container}>
-      <StatusBar style="hidden" />
+      <StatusBar style="auto" />
       <View style={styles.topo}>
         <Text style={styles.displayText}>
           {stringCalculo}
@@ -41,7 +45,13 @@ export default function App() {
         {
           numeros.map(function (e) {
             return (
-              <Botao key={e} numero={e}></Botao>
+              <Botao
+                logicaCalculadora={logicaCalculadora}
+                key={e}
+                numero={e}
+              >
+
+              </Botao>
             )
           })
         }
@@ -52,45 +62,54 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
     backgroundColor: 'black',
     width: '100%',
   },
   topo: {
+    flex: 1,
+    justifyContent: 'center',
     padding: 10,
     borderBottom: 'white',
     borderBottomWidth: 2,
     width: '100%',
+    height: '16%',
   },
   displayText: {
-    fontSize: 24,
+    fontSize: 48,
     color: 'white',
     textAlign: 'right',
-    paddingRight: 12,
+    paddingRight: 4,
   },
   SignsContainer: {
-    textAlign: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
+    flex: 1,
     flexDirection: 'row-reverse',
     flexWrap: 'wrap',
+    height: '16%',
   },
   ContainertextSigns: {
     width: '25%',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderColor: 'white',
     borderWidth: 1,
+    height: '100%',
   },
   textSigns: {
-    fontSize: '2rem',
-    textAlign: 'center',
+    fontSize: 36,
     color: 'white',
+    textAlign: 'center',
   },
   numbersView: {
     textAlign: 'center',
     alignContent: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     width: '100%',
     flexDirection: 'row-reverse',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    height: '64%',
   }
 });
 
