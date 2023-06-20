@@ -11,14 +11,15 @@ export default function App() {
   const [stringCalculo, setStringCalculo] = React.useState('0')
 
   const numeros = [];
-  for (var i = 0; i <= 9; i++) {
+  for (var i = 9; i >= 0; i--) {
     numeros.push(i)
   }
 
   return (
-    <View sytle={styles.container}>
+    <View style={styles.container}>
+      <StatusBar style="hidden" />
       <View style={styles.topo}>
-        <Text style={{ fontSize: 24 }}>
+        <Text style={styles.displayText}>
           {stringCalculo}
         </Text>
       </View>
@@ -36,7 +37,7 @@ export default function App() {
           <Text style={styles.textSigns}>/</Text>
         </TouchableOpacity>
       </View>
-      <View>
+      <View style={styles.numbersView}>
         {
           numeros.map(function (e) {
             return (
@@ -45,31 +46,52 @@ export default function App() {
           })
         }
       </View>
-      <StatusBar style="hidden" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'green',
+    backgroundColor: 'black',
+    width: '100%',
   },
   topo: {
     padding: 10,
-    borderBottom: 'black',
+    borderBottom: 'white',
     borderBottomWidth: 2,
     width: '100%',
   },
+  displayText: {
+    fontSize: 24,
+    color: 'white',
+    textAlign: 'right',
+    paddingRight: 12,
+  },
   SignsContainer: {
-    flexDirection: 'row',
+    textAlign: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row-reverse',
+    flexWrap: 'wrap',
   },
   ContainertextSigns: {
-    width: '20%',
+    width: '25%',
+    borderColor: 'white',
+    borderWidth: 1,
   },
   textSigns: {
     fontSize: '2rem',
     textAlign: 'center',
+    color: 'white',
   },
+  numbersView: {
+    textAlign: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    flexDirection: 'row-reverse',
+    flexWrap: 'wrap'
+  }
 });
 
 
